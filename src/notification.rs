@@ -260,6 +260,7 @@ unsafe fn close_notification(hwnd: HWND) {
     if let Ok(mut active_noti) = ACTIVE_NOTIFICATIONS.lock() {
         if let Some(index) = active_noti.iter().position(|e| *e == hwnd) {
             active_noti.remove(index);
+            DestroyWindow(hwnd);
         }
 
         // reposition notifications
